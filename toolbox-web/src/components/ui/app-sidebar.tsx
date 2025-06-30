@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavLink, useMatch } from "react-router";
+import { useTranslation } from "react-i18next";
 
 export type SidebarNavGroup = {
   label?: string | undefined;
@@ -51,18 +52,24 @@ const AppSidebarMenuItemButton = (props: AppSidebarMenuItemButtonProps) => {
 };
 
 export function AppSidebar({ groups }: AppSidebarProps) {
+  const { t } = useTranslation("AppSidebar");
+
   return (
     <Sidebar>
       <SidebarContent className="gap-0">
         {groups.map(({ label, items }) => (
           <SidebarGroup key={`sidebar-group-${label}`}>
-            {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
+            {label && <SidebarGroupLabel>{t(label)}</SidebarGroupLabel>}
             <SidebarGroupContent>
               <SidebarMenu>
                 {items.map((item) => {
                   return (
                     <SidebarMenuItem key={item.title}>
-                      <AppSidebarMenuItemButton {...item} />
+                      <AppSidebarMenuItemButton
+                        title={t(item.title)}
+                        icon={item.icon}
+                        url={item.url}
+                      />
                     </SidebarMenuItem>
                   );
                 })}

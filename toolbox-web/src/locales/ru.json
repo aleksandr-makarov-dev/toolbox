@@ -1,12 +1,28 @@
 {
-  "DashboardProjectListPage": {
-    "PageHeader_title": "Ваши проекты",
-    "PageHeader_action": "Создать проект"
+  "DashboardBoardListPage": {
+    "title": "Ваши доски",
+    "add_board_action": "Добавить доску"
   },
-  "ProjectsEmptyState": {
-    "EmptyStateTitle": "Проекты не найдены",
-    "EmptyStateSubtitle": "Возможно, ни один проект не соответствует текущим фильтрам. Попробуйте сбросить фильтры или создайте новый проект.",
-    "EmptyStateActions_primary_btn": "Создать проект",
+
+  "BoardsEmptyState": {
+    "EmptyStateTitle": "Доски не найдены",
+    "EmptyStateSubtitle": "Возможно, ни одна доска не соответствует текущим фильтрам. Попробуйте сбросить фильтры или создайте новую доску.",
+    "EmptyStateActions_primary_btn": "Создать доску",
     "EmptyStateActions_secondary_btn": "Сбросить фильтры"
+  },
+
+  "DashboardBoardDetailsPage": {
+    "add_list_action": "Добавить список",
+    "add_task_action": "Добавить задачу"
+  },
+
+  "AppSidebar": {
+    "group_label_general": "Общее",
+    "item_label_home": "Главная",
+    "item_label_notifications": "Уведомления",
+    "group_label_task_management": "Управление задачами",
+    "item_label_my_tasks": "Мои задачи",
+    "item_label_my_boards": "Мои доски",
+    "item_label_settings": "Настройки"
   }
 }

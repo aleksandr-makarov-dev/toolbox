@@ -1,5 +1,5 @@
 import { MdChatBubble, MdInsertDriveFile, MdCheckBox } from "react-icons/md";
-import type { TaskPriority } from "../types";
+import type { TaskPriority } from "../types/task";
 import {
   KanbanCard,
   KanbanCardContent,

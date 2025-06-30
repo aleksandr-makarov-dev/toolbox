@@ -6,5 +6,7 @@ create table if not exists tasks
     created_at  timestamp without time zone not null,
     priority    varchar(32)                 not null,
     due_date    timestamp without time zone,
-    primary key (id)
+    list_id     bigint                      not null,
+    primary key (id),
+    constraint fk_list_task foreign key (list_id) references lists (id)
 )

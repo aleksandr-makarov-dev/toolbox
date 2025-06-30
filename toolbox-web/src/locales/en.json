@@ -1,12 +1,28 @@
 {
-  "DashboardProjectListPage": {
-    "PageHeader_title": "Your projects",
-    "PageHeader_action": "Create project"
+  "DashboardBoardListPage": {
+    "title": "Your Boards",
+    "add_board_action": "Add Board"
   },
-  "ProjectsEmptyState": {
-    "EmptyStateTitle": "No projects found",
-    "EmptyStateSubtitle": "It's possible that no projects match the current filters. Try resetting the filters or create a new project.",
-    "EmptyStateActions_primary_btn": "Create project",
+
+  "BoardsEmptyState": {
+    "EmptyStateTitle": "No boards found",
+    "EmptyStateSubtitle": "It's possible that no boards match the current filters. Try resetting the filters or create a new board.",
+    "EmptyStateActions_primary_btn": "Create board",
     "EmptyStateActions_secondary_btn": "Reset filters"
+  },
+
+  "DashboardBoardDetailsPage": {
+    "add_list_action": "Add List",
+    "add_task_action": "Add Task"
+  },
+
+  "AppSidebar": {
+    "group_label_general": "General",
+    "item_label_home": "Home",
+    "item_label_notifications": "Notifications",
+    "group_label_task_management": "Task Management",
+    "item_label_my_tasks": "My Tasks",
+    "item_label_my_boards": "My Boards",
+    "item_label_settings": "Settings"
   }
 }

@@ -1,44 +1,26 @@
 import type { ApiResponse } from "@/types";
-import type { ProjectCreateRequest, ProjectSummaryResponse } from "../types";
 import type { MutationConfig } from "@/lib/react-query";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
+import type { BoardCreateRequest, BoardSummaryResponse } from "../types/board";
 
-export function createProject({
+export function createBoard({
   data,
 }: {
-  data: ProjectCreateRequest;
-}): Promise<ApiResponse<ProjectSummaryResponse>> {
-  // return new Promise((resolve) => {
-  //   setTimeout(
-  //     () =>
-  //       resolve({
-  //         flag: true,
-  //         code: 201,
-  //         data: {
-  //           id: 1,
-  //           title: data.title,
-  //           status: "DRAFT",
-  //           createdAt: new Date(29, 6, 2025, 0, 58),
-  //         },
-  //         error: null,
-  //       }),
-  //     5000
-  //   );
-  // });
-
-  return api.post("/projects", data);
+  data: BoardCreateRequest;
+}): Promise<ApiResponse<BoardSummaryResponse>> {
+  return api.post("/boards", data);
 }
 
-type UseCreateProjectOptions = {
-  mutationConfig?: MutationConfig<typeof createProject>;
+type UseCreateBoardOptions = {
+  mutationConfig?: MutationConfig<typeof createBoard>;
 };
 
-export const useCreateProject = ({
+export const useCreateBoard = ({
   mutationConfig,
-}: UseCreateProjectOptions = {}) => {
+}: UseCreateBoardOptions = {}) => {
   return useMutation({
     ...mutationConfig,
-    mutationFn: createProject,
+    mutationFn: createBoard,
   });
 };

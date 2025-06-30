@@ -11,35 +11,35 @@ import { cn } from "@/utils/cn";
 
 const groups: SidebarNavGroup[] = [
   {
-    label: "General",
+    label: "group_label_general",
     items: [
       {
-        title: "Home",
+        title: "item_label_home",
         url: "/dashboard/home",
         icon: Home,
       },
       {
-        title: "Notifications",
+        title: "item_label_notifications",
         url: "/dashboard/notifications",
         icon: Calendar,
       },
     ],
   },
   {
-    label: "Task Management",
+    label: "group_label_task_management",
     items: [
       {
-        title: "My Tasks",
+        title: "item_label_my_tasks",
         url: "/dashboard/my-tasks",
         icon: Box,
       },
       {
-        title: "Projects",
-        url: "/dashboard/projects",
+        title: "item_label_my_boards",
+        url: "/dashboard/boards",
         icon: Box,
       },
       {
-        title: "Settings",
+        title: "item_label_settings",
         url: "/dashboard/settings",
         icon: Settings,
       },

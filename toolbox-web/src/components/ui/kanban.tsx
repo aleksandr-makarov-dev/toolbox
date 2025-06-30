@@ -64,11 +64,11 @@ export function KanbanColumn({
   );
 }
 
-export type KanbanProps = {
+export type KanbanRootProps = {
   children?: React.ReactNode;
 } & HtmlHTMLAttributes<HTMLDivElement>;
 
-export function Kanban({ children, className, ...props }: KanbanProps) {
+export function KanbanRoot({ children, className, ...props }: KanbanRootProps) {
   return (
     <div
       className={cn(

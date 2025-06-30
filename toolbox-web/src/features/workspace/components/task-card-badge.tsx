@@ -1,5 +1,5 @@
 import { Badge, badgeVariants } from "@/components/ui/badge";
-import type { TaskPriority } from "../types";
+import type { TaskPriority } from "../types/task";
 import type { VariantProps } from "class-variance-authority";
 
 export function TaskCardPriorityBadge({ value }: { value: TaskPriority }) {
