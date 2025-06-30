@@ -1,0 +1,12 @@
+{
+  "DashboardProjectListPage": {
+    "PageHeader_title": "Your projects",
+    "PageHeader_action": "Create project"
+  },
+  "ProjectsEmptyState": {
+    "EmptyStateTitle": "No projects found",
+    "EmptyStateSubtitle": "It's possible that no projects match the current filters. Try resetting the filters or create a new project.",
+    "EmptyStateActions_primary_btn": "Create project",
+    "EmptyStateActions_secondary_btn": "Reset filters"
+  }
+}

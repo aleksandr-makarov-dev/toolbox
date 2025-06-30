@@ -1,0 +1,12 @@
+{
+  "DashboardProjectListPage": {
+    "PageHeader_title": "Ваши проекты",
+    "PageHeader_action": "Создать проект"
+  },
+  "ProjectsEmptyState": {
+    "EmptyStateTitle": "Проекты не найдены",
+    "EmptyStateSubtitle": "Возможно, ни один проект не соответствует текущим фильтрам. Попробуйте сбросить фильтры или создайте новый проект.",
+    "EmptyStateActions_primary_btn": "Создать проект",
+    "EmptyStateActions_secondary_btn": "Сбросить фильтры"
+  }
+}

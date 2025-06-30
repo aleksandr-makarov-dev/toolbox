@@ -1,108 +1,83 @@
-import { File, PlusIcon, SettingsIcon } from "lucide-react";
-import { Button } from "./button";
-import { Badge } from "./badge";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
+import type { HtmlHTMLAttributes } from "react";
 
-export type KanbanCardProps = {
+export type KanbanColumnContentProps = {
   children?: React.ReactNode;
-};
+} & HtmlHTMLAttributes<HTMLDivElement>;
 
-type DivProps = React.HTMLAttributes<HTMLDivElement>;
-type HeadingProps = React.HTMLAttributes<HTMLHeadingElement>;
-
-export function KanbanCardTitle({
+export function KanbanColumnContent({
   children,
   className,
   ...props
-}: { children: React.ReactNode } & HeadingProps) {
+}: KanbanColumnContentProps) {
   return (
-    <h3 className={cn("text-sm font-semibold", className)} {...props}>
-      {children}
-    </h3>
-  );
-}
-
-export function KanbanCardContent({
-  children,
-  className,
-  ...props
-}: { children: React.ReactNode } & DivProps) {
-  return (
-    <div className={cn("p-3", className)} {...props}>
+    <div
+      className={cn(
+        "px-3 pb-3 flex flex-col gap-2 overflow-y-auto h-full",
+        className
+      )}
+      {...props}
+    >
       {children}
     </div>
   );
 }
 
-export function KanbanCardFooter({
+export type KanbanColumnHeaderProps = {
+  children?: React.ReactNode;
+} & HtmlHTMLAttributes<HTMLDivElement>;
+
+export function KanbanColumnHeader({
   children,
   className,
   ...props
-}: { children: React.ReactNode } & DivProps) {
+}: KanbanColumnHeaderProps) {
   return (
-    <div className={cn("p-3 pt-0", className)} {...props}>
+    <div
+      className={cn("flex items-center justify-between h-12 p-3", className)}
+      {...props}
+    >
       {children}
     </div>
-  );
-}
-
-export function KanbanCardHeader({
-  children,
-  className,
-  ...props
-}: { children: React.ReactNode } & DivProps) {
-  return (
-    <div className={cn("p-3 pb-0", className)} {...props}>
-      {children}
-    </div>
-  );
-}
-
-export function KanbanCard({ children }: KanbanCardProps) {
-  return (
-    <div className="bg-white border-1 border-border rounded-md">{children}</div>
   );
 }
 
 export type KanbanColumnProps = {
-  title: string;
-  count: number;
   children?: React.ReactNode;
-};
+} & HtmlHTMLAttributes<HTMLDivElement>;
 
-export function KanbanColumn({ title, count, children }: KanbanColumnProps) {
+export function KanbanColumn({
+  children,
+  className,
+  ...props
+}: KanbanColumnProps) {
   return (
-    <div className="w-80 bg-sidebar-accent border-1 border-border border-t-4 border-t-primary rounded-md overflow-y-auto">
-      <div className="p-2 flex items-center justify-between border-b border-border">
-        <Badge>{title}</Badge>
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1">
-            <File className="size-4" />
-            <p className="text-sm">{count}</p>
-          </div>
-          <div className="space-x-1">
-            <Button size="iconSm" variant="outline">
-              <PlusIcon />
-            </Button>
-            <Button size="iconSm" variant="outline">
-              <SettingsIcon />
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div className="p-2 flex flex-col gap-y-2">{children}</div>
+    <div
+      className={cn(
+        "border-border border w-full max-w-80 shrink-0 h-full flex flex-col bg-zinc-50 rounded",
+        className
+      )}
+      {...props}
+    >
+      {children}
     </div>
   );
 }
 
 export type KanbanProps = {
   children?: React.ReactNode;
-};
+} & HtmlHTMLAttributes<HTMLDivElement>;
 
-export function Kanban({ children }: KanbanProps) {
+export function Kanban({ children, className, ...props }: KanbanProps) {
   return (
-    <div className="overflow-x-auto h-full">
-      <div className="flex gap-3 w-max h-full">{children}</div>
+    <div
+      className={cn(
+        "flex flex-row gap-3 flex-1 h-full overflow-x-auto overflow-y-hidden",
+        className
+      )}
+      {...props}
+    >
+      {children}
     </div>
   );
 }

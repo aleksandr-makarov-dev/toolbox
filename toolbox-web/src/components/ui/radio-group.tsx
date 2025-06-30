@@ -2,7 +2,7 @@ import * as React from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
 import { CircleIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 function RadioGroup({
   className,
@@ -26,11 +26,11 @@ function RadioGroupItem({
       data-slot="radio-group-item"
       className={cn(
         // Base styles
-        "aspect-square size-4 shrink-0 rounded-full border border-zinc-400 dark:border-zinc-400/30 transition-[color,box-shadow] outline-none",
+        "aspect-square size-4 shrink-0 rounded-full border border-input dark:border-input/30 transition-[color,box-shadow] outline-none",
         "dark:bg-input/30",
 
         // Focus ring (light/dark mode, accessible)
-        "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus-visible:ring-primary dark:focus:ring-blue-400",
+        "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus-visible:ring-primary dark:focus:ring-blue-400",
 
         // Invalid state
         "aria-invalid:ring-destructive aria-invalid:ring-offset-2 aria-invalid:ring-2 dark:aria-invalid:ring-destructive/30",

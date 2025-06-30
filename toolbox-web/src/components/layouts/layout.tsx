@@ -7,7 +7,7 @@ import { AppSidebar, type SidebarNavGroup } from "@/components/ui/app-sidebar";
 import { Home, Calendar, Settings, Box } from "lucide-react";
 import React from "react";
 import { Separator } from "../ui/separator";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/cn";
 
 const groups: SidebarNavGroup[] = [
   {
@@ -50,11 +50,13 @@ const groups: SidebarNavGroup[] = [
 export type LayoutProps = {
   children: React.ReactNode;
   title: string;
+  header?: React.ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>;
 
 export default function Layout({
   children,
   title,
+  header,
   className,
   ...props
 }: LayoutProps) {
@@ -71,10 +73,10 @@ export default function Layout({
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <h2>Hello!</h2>
+            {header}
           </header>
           <main
-            className={cn("flex-1 overflow-hidden p-4 pt-0", className)}
+            className={cn("flex-1 overflow-auto p-4 pt-2", className)}
             {...props}
           >
             {children}

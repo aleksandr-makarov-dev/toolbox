@@ -55,7 +55,7 @@ export function AppSidebar({ groups }: AppSidebarProps) {
     <Sidebar>
       <SidebarContent className="gap-0">
         {groups.map(({ label, items }) => (
-          <SidebarGroup>
+          <SidebarGroup key={`sidebar-group-${label}`}>
             {label && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
             <SidebarGroupContent>
               <SidebarMenu>
