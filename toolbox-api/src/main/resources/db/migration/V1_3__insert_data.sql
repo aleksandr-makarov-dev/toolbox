@@ -15,8 +15,14 @@ VALUES ('Бэклог', NOW(), 1),
 
 -- Задачи для списка 1 (Бэклог)
 INSERT INTO tasks (title, description, created_at, priority, due_date, list_id)
-VALUES ('Разработка экрана входа', 'Создать макет интерфейса', NOW(), 'MEDIUM', NOW() + INTERVAL '7 days', 1),
-       ('Изучить OAuth', 'Сравнить Google и GitHub OAuth', NOW(), 'LOW', NOW() + INTERVAL '10 days', 1);
+VALUES
+    ('Разработка экрана входа', 'Создать макет интерфейса', NOW(), 'MEDIUM', NOW() + INTERVAL '7 days', 1),
+    ('Изучить OAuth', 'Сравнить Google и GitHub OAuth', NOW(), 'LOW', NOW() + INTERVAL '10 days', 1),
+-- дополнительные 4 задачи для списка 1
+    ('Изучить требования', 'Собрать требования от заказчика', NOW(), 'LOW', NOW() + INTERVAL '12 days', 1),
+    ('Оценка трудозатрат', 'Оценить задачи на первую итерацию', NOW(), 'MEDIUM', NOW() + INTERVAL '9 days', 1),
+    ('Анализ конкурентов', 'Исследование похожих решений', NOW(), 'LOW', NOW() + INTERVAL '14 days', 1),
+    ('Создание roadmap', 'Определить ключевые этапы', NOW(), 'MEDIUM', NOW() + INTERVAL '11 days', 1);
 
 -- Задачи для списка 2 (К выполнению)
 INSERT INTO tasks (title, description, created_at, priority, due_date, list_id)

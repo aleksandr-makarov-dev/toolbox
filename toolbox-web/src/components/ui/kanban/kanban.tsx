@@ -1,3 +1,5 @@
+import type { ListSummaryResponse } from "@/features/workspace/types/list";
+import type { TaskSummaryResponse } from "@/features/workspace/types/task";
 import { cn } from "@/utils/cn";
 import type { HtmlHTMLAttributes } from "react";
 
@@ -33,10 +35,7 @@ export function KanbanColumnHeader({
   ...props
 }: KanbanColumnHeaderProps) {
   return (
-    <div
-      className={cn("flex items-center justify-between h-12 p-3", className)}
-      {...props}
-    >
+    <div className={cn("h-12 p-3", className)} {...props}>
       {children}
     </div>
   );
@@ -81,3 +80,8 @@ export function KanbanRoot({ children, className, ...props }: KanbanRootProps) {
     </div>
   );
 }
+
+export type KanbanProps = {
+  columns: ListSummaryResponse[];
+  data: TaskSummaryResponse[];
+};

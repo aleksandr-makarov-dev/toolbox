@@ -8,6 +8,7 @@ public record TaskSummaryResponse(
         Long id,
         String title,
         TaskPriority priority,
-        LocalDateTime dueDate
+        LocalDateTime dueDate,
+        Long listId
 ) {
 }

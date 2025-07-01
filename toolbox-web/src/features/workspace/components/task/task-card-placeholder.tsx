@@ -3,7 +3,7 @@ import {
   KanbanCardContent,
   KanbanCardFooter,
   KanbanCardHeader,
-} from "@/components/ui/kanban-card";
+} from "@/components/ui/kanban/kanban-card";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export function TaskCardPlaceholder() {

@@ -8,10 +8,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router";
 import { BoardStatusBadge } from "./board-status-badge";
-import type { BoardStatus } from "../types/board";
+import type { BoardStatus } from "../../types/board";
 
 export type BoardCardProps = {
-  id: number;
+  id: string;
   title: string;
   status: BoardStatus;
 };

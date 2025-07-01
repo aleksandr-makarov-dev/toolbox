@@ -1,10 +1,12 @@
 import Layout from "@/components/layouts/layout";
+import { PageHeader } from "@/components/layouts/page-header";
 import { Button } from "@/components/ui/button";
 import { Grid } from "@/components/ui/grid";
 import { useBoards } from "@/features/workspace/api/get-boards";
-import { BoardCard } from "@/features/workspace/components/board-card";
-import { BoardCardPlaceholder } from "@/features/workspace/components/board-card-placeholder";
-import { BoardsEmptyState } from "@/features/workspace/components/board-empty-state";
+import { BoardCard } from "@/features/workspace/components/board/board-card";
+import { BoardCardPlaceholder } from "@/features/workspace/components/board/board-card-placeholder";
+import { BoardCreateDialog } from "@/features/workspace/components/board/board-create-dialog";
+import { BoardsEmptyState } from "@/features/workspace/components/board/board-empty-state";
 import { useTranslation } from "react-i18next";
 import { MdAdd } from "react-icons/md";
 
@@ -18,13 +20,19 @@ export function DashboardBoardListPage() {
       title="Boards"
       className="flex flex-col gap-4"
       header={
-        <div className="flex flex-row gap-2 items-center justify-between flex-1">
-          <h2 className="text-lg font-medium">{t("title")}</h2>
-          <Button>
-            <MdAdd />
-            {t("add_board_action")}
-          </Button>
-        </div>
+        <PageHeader
+          title={t("title")}
+          actions={
+            <BoardCreateDialog
+              trigger={
+                <Button>
+                  <MdAdd />
+                  {t("add_board_action")}
+                </Button>
+              }
+            />
+          }
+        />
       }
     >
       <Grid

@@ -7,28 +7,31 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
+import {
+  type ListCreateRequest,
+  ListCreateRequestSchema,
+} from "../../types/list";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
-import {
-  type BoardCreateRequest,
-  BoardCreateRequestSchema,
-} from "../types/board";
 
-export type BoardCreateFormProps = {
-  formId?: string | undefined;
+export type ListCreateFormProps = {
+  boardId: string;
   submitting?: boolean;
-  onSubmit: (value: BoardCreateRequest) => void;
+  formId?: string;
+  onSubmit: (data: ListCreateRequest) => void;
 };
 
-export function BoardCreateForm({
-  formId,
+export function ListCreateForm({
+  boardId,
   submitting,
+  formId,
   onSubmit,
-}: BoardCreateFormProps) {
-  const form = useForm<BoardCreateRequest>({
-    resolver: zodResolver(BoardCreateRequestSchema),
+}: ListCreateFormProps) {
+  const form = useForm<ListCreateRequest>({
+    resolver: zodResolver(ListCreateRequestSchema),
     defaultValues: {
       title: "",
+      boardId: boardId,
     },
   });
 
@@ -42,10 +45,10 @@ export function BoardCreateForm({
             disabled={submitting}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>Название</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="What's name of your project?"
+                    placeholder="Как вы хотите назвать этот список?"
                     {...field}
                   />
                 </FormControl>

@@ -1,6 +1,6 @@
 import { Badge, badgeVariants } from "@/components/ui/badge";
-import type { TaskPriority } from "../types/task";
 import type { VariantProps } from "class-variance-authority";
+import type { TaskPriority } from "../../types/task";
 
 export function TaskCardPriorityBadge({ value }: { value: TaskPriority }) {
   const { label, variant } = taskPriorityMap[value];

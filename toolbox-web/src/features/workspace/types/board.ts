@@ -2,13 +2,13 @@ import z from "zod";
 import type { ListSummaryResponse } from "./list";
 
 export type BoardSummaryResponse = {
-  id: number;
+  id: string;
   title: string;
   status: BoardStatus;
 };
 
 export type BoardDetailsResponse = {
-  id: number;
+  id: string;
   title: string;
   status: BoardStatus;
   lists: ListSummaryResponse[];

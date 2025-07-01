@@ -7,12 +7,12 @@ import type { QueryConfig } from "@/lib/react-query";
 export const getTasksByBoardId = ({
   boardId,
 }: {
-  boardId: number;
+  boardId: string;
 }): Promise<ApiResponse<TaskSummaryResponse[]>> => {
   return api.get(`/boards/${boardId}/tasks`);
 };
 
-export const getTasksByBoardIdQueryOptions = (boardId: number) => {
+export const getTasksByBoardIdQueryOptions = (boardId: string) => {
   return queryOptions({
     queryKey: ["boards", boardId, "tasks"],
     queryFn: () => getTasksByBoardId({ boardId }),
@@ -20,7 +20,7 @@ export const getTasksByBoardIdQueryOptions = (boardId: number) => {
 };
 
 type UseTasksByBoardIdOptions = {
-  boardId: number;
+  boardId: string;
   queryConfig?: QueryConfig<typeof getTasksByBoardIdQueryOptions>;
 };
 

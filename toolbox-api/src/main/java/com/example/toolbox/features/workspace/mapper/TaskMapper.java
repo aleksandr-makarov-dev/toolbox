@@ -13,7 +13,8 @@ public class TaskMapper {
                 task.getId(),
                 task.getTitle(),
                 task.getPriority(),
-                task.getDueDate()
+                task.getDueDate(),
+                task.getList().getId()
         );
     }
 
