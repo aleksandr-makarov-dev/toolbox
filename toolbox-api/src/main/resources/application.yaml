@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: toolbox
+  datasource:
+    url: jdbc:postgresql://localhost:5432/app_db
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true

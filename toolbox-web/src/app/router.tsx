@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { LandingPage } from "./pages/landing";
-import { DashboardBoardListPage } from "./pages/dashboard/boards/list";
 import { DashboardBoardDetailsPage } from "./pages/dashboard/boards/details";
 
 export const createAppRouter = () =>
@@ -8,10 +7,6 @@ export const createAppRouter = () =>
     {
       path: "/",
       element: <LandingPage />,
-    },
-    {
-      path: "/dashboard/boards",
-      element: <DashboardBoardListPage />,
     },
     {
       path: "/dashboard/boards/:boardId",

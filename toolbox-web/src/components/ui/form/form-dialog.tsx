@@ -1,4 +1,4 @@
-import { useDialog } from "@/hooks/use-dialog";
+import { useModal } from "@/hooks/use-modal";
 import {
   Dialog,
   DialogClose,
@@ -13,29 +13,31 @@ import { Button } from "../button";
 import { useEffect } from "react";
 
 export type FormDialogProps = {
-  triggerButton: React.ReactNode;
-  submitButton: React.ReactNode;
   title: string;
   description?: string;
-  children?: React.ReactNode;
-  done?: boolean;
+  triggerButton: React.ReactNode;
+  submitButton: React.ReactNode;
+  children: React.ReactNode;
+  cancelButtonLabel?: string;
+  isDone?: boolean;
 };
 
 export function FormDialog({
   title,
   description,
-  submitButton,
   triggerButton,
+  submitButton,
   children,
-  done,
+  cancelButtonLabel = "Cancel",
+  isDone = false,
 }: FormDialogProps) {
-  const { open, onOpenChange, closeDialog } = useDialog();
+  const { open, onOpenChange, closeModal } = useModal();
 
   useEffect(() => {
-    if (done) {
-      closeDialog();
+    if (isDone) {
+      closeModal();
     }
-  }, [done]);
+  }, [isDone]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -48,7 +50,7 @@ export function FormDialog({
         {children}
         <DialogFooter>
           <DialogClose asChild>
-            <Button variant="outline">Отмена</Button>
+            <Button variant="outline">{cancelButtonLabel}</Button>
           </DialogClose>
           {submitButton}
         </DialogFooter>

@@ -12,8 +12,8 @@ export type TaskPriority = "LOW" | "MEDIUM" | "HIGH" | "CRITICAL";
 
 export const TaskCreateRequestSchema = z.object({
   title: z.string().min(3).max(100),
-  priority: z.string().max(32),
-  dueDate: z.date().optional(),
+  priority: z.string().min(1).max(32),
+  dueDate: z.string().optional(),
   listId: z.string(),
 });
 

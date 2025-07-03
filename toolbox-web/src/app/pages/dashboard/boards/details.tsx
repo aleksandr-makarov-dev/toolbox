@@ -1,61 +1,82 @@
 import Layout from "@/components/layouts/layout";
-import { useParams } from "react-router";
 import { Button } from "@/components/ui/button";
-import { MdAdd } from "react-icons/md";
-import { useTranslation } from "react-i18next";
+import type { MySelectOption } from "@/components/ui/form/my-select";
+import { Kanban } from "@/components/ui/kanban/kanban";
+import { KanbanCard } from "@/components/ui/kanban/kanban-card";
+import { KanbanColumn } from "@/components/ui/kanban/kanban-column";
 import { useBoardById } from "@/features/workspace/api/get-board-by-id";
 import { useTasksByBoardId } from "@/features/workspace/api/get-tasks-by-board-id";
-import { BoardKanban } from "@/features/workspace/components/board/board-kanban";
-import { KanbanProvider } from "@/context/kanban-context";
-import { BoardPageHeader } from "@/features/workspace/components/board/board-page-header";
-import { ListCreateDialog } from "@/features/workspace/components/list/list-create-dialog";
+import { ListCreateDialog } from "@/features/workspace/components/list-create-dialog";
+import { TaskCreateDialog } from "@/features/workspace/components/task-create-dialog";
+import React, { useMemo } from "react";
+import { MdAdd, MdMoreVert } from "react-icons/md";
+import { useParams } from "react-router";
 
 export function DashboardBoardDetailsPage() {
-  const { t } = useTranslation("DashboardBoardDetailsPage");
-
   const { boardId } = useParams<{ boardId: string }>();
+  const boardQuery = useBoardById({ boardId: boardId! });
+  const tasksQuery = useTasksByBoardId({ boardId: boardId! });
 
-  const boardQuery = useBoardById({
-    boardId: boardId as string,
-    queryConfig: { enabled: !!boardId },
-  });
+  const lists = boardQuery.data?.data?.lists;
+  const tasks = tasksQuery.data?.data;
 
-  const tasksQuery = useTasksByBoardId({
-    boardId: boardId as string,
-    queryConfig: {
-      enabled: !!boardId,
-    },
-  });
+  const listOptions = useMemo<MySelectOption[] | undefined>(() => {
+    return lists?.map((list) => ({
+      label: list.title,
+      value: String(list.id),
+    }));
+  }, [lists]);
 
   return (
-    <KanbanProvider
-      columns={boardQuery.data?.data?.lists}
-      data={tasksQuery.data?.data}
-      loading={tasksQuery.isLoading || boardQuery.isLoading}
+    <Layout
+      title="Details"
+      header={
+        <ListCreateDialog
+          trigger={<Button>Добавить список</Button>}
+          boardId={boardId!}
+        />
+      }
     >
-      <Layout
-        title="Board"
-        className="flex flex-col gap-4 overflow-hidden"
-        header={
-          <BoardPageHeader
-            title={boardQuery.data?.data?.title}
-            loading={boardQuery.isLoading}
+      <Kanban
+        columns={lists}
+        groupKey="listId"
+        data={tasks}
+        render={({ column, items }) => (
+          <KanbanColumn
+            id={column.id}
+            title={column.title}
+            items={items}
+            render={(item) => (
+              <KanbanCard key={item.id}>{item.title}</KanbanCard>
+            )}
             actions={
-              <ListCreateDialog
-                boardId={boardId!}
-                trigger={
-                  <Button>
-                    <MdAdd />
-                    {t("add_list_action")}
-                  </Button>
-                }
-              />
+              <React.Fragment>
+                <TaskCreateDialog
+                  boardId={boardId!}
+                  listId={String(column.id)}
+                  listOptions={listOptions}
+                  trigger={
+                    <Button
+                      className="bg-background"
+                      size="iconSm"
+                      variant="outline"
+                    >
+                      <MdAdd />
+                    </Button>
+                  }
+                />
+                <Button
+                  className="bg-background"
+                  size="iconSm"
+                  variant="outline"
+                >
+                  <MdMoreVert />
+                </Button>
+              </React.Fragment>
             }
           />
-        }
-      >
-        <BoardKanban boardId={boardId!} />
-      </Layout>
-    </KanbanProvider>
+        )}
+      />
+    </Layout>
   );
 }

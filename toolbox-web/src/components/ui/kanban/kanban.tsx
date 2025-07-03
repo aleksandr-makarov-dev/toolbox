@@ -1,87 +1,34 @@
-import type { ListSummaryResponse } from "@/features/workspace/types/list";
-import type { TaskSummaryResponse } from "@/features/workspace/types/task";
-import { cn } from "@/utils/cn";
-import type { HtmlHTMLAttributes } from "react";
+import { useMemo } from "react";
 
-export type KanbanColumnContentProps = {
-  children?: React.ReactNode;
-} & HtmlHTMLAttributes<HTMLDivElement>;
-
-export function KanbanColumnContent({
-  children,
-  className,
-  ...props
-}: KanbanColumnContentProps) {
-  return (
-    <div
-      className={cn(
-        "px-3 pb-3 flex flex-col gap-2 overflow-y-auto h-full",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
-
-export type KanbanColumnHeaderProps = {
-  children?: React.ReactNode;
-} & HtmlHTMLAttributes<HTMLDivElement>;
-
-export function KanbanColumnHeader({
-  children,
-  className,
-  ...props
-}: KanbanColumnHeaderProps) {
-  return (
-    <div className={cn("h-12 p-3", className)} {...props}>
-      {children}
-    </div>
-  );
-}
-
-export type KanbanColumnProps = {
-  children?: React.ReactNode;
-} & HtmlHTMLAttributes<HTMLDivElement>;
-
-export function KanbanColumn({
-  children,
-  className,
-  ...props
-}: KanbanColumnProps) {
-  return (
-    <div
-      className={cn(
-        "border-border border w-full max-w-80 shrink-0 h-full flex flex-col bg-zinc-50 rounded",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
-
-export type KanbanRootProps = {
-  children?: React.ReactNode;
-} & HtmlHTMLAttributes<HTMLDivElement>;
-
-export function KanbanRoot({ children, className, ...props }: KanbanRootProps) {
-  return (
-    <div
-      className={cn(
-        "flex flex-row gap-3 flex-1 h-full overflow-x-auto overflow-y-hidden",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-}
-
-export type KanbanProps = {
-  columns: ListSummaryResponse[];
-  data: TaskSummaryResponse[];
+export type GroupDef<T> = {
+  column: ColumnDef;
+  items: T[];
 };
+
+export type ColumnDef = {
+  id: string;
+  title: string;
+};
+
+export type KanbanProps<T> = {
+  columns?: ColumnDef[] | null | undefined;
+  data?: T[] | null | undefined;
+  groupKey: keyof T;
+  render: (group: GroupDef<T>, index: number) => React.ReactNode;
+};
+
+export function Kanban<T>({ columns, data, groupKey, render }: KanbanProps<T>) {
+  const groups = useMemo(() => {
+    if (!columns) return [];
+    return columns.map((column) => ({
+      column,
+      items: data?.filter((item) => item[groupKey] === column.id) ?? [],
+    }));
+  }, [columns, data, groupKey]);
+
+  return (
+    <div className="flex flex-row gap-3 flex-1 h-full overflow-x-auto overflow-y-hidden">
+      {groups.map((group, index) => render(group, index))}
+    </div>
+  );
+}
